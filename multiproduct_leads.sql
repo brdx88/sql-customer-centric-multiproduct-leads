@@ -186,7 +186,11 @@ SELECT
     0 AS flag_process -- Placeholder
 FROM SEMI_FINALIZE
 
+-- Left join payroll data to attach income and company details
 LEFT JOIN PYR
     ON CAST(SEMI_FINALIZE.id AS BIGINT) = PYR.id_key
 
+-- Left join AUM segmentation data
+LEFT JOIN AUMS 
+    ON CAST(SEMI_FINALIZE.id AS VARCHAR(50)) = CAST(AUMS.id AS VARCHAR(50))
 ;
